@@ -42,7 +42,12 @@ class MainActivity : AppCompatActivity() {
             try {
                 val expression = ExpressionBuilder(placeholder.text.toString()).build()
                 val result = expression.evaluate()
-                answer.text = result.toString()
+                val longResult = result.toLong()
+                if (result == longResult.toDouble()) {
+                    answer.text = longResult.toString()
+                } else {
+                    answer.text = result.toString()
+                }
             } catch (e: Exception) {
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                 Log.d("Exception", "Message: ${e.message}")
